@@ -1,16 +1,23 @@
-filePath<-"household_power_consumption.txt"
-ECData1<-read.table(filePath,header=T,na.strings =NA,sep=";" )
-ECData1$Date<-as.Date(ECData1$Date,format="%d/%m/%Y")
-head(ECData1)
-ECData<-subset(ECData1,Date=="2007/02/01"| Date=="2007/02/02")
-library(lubridate)
-ECData$DateTime<- ymd_hms(paste(ECData$Date,ECData$Time))
-
-
-ECData$Global_active_power<-as.numeric(ECData$Global_active_power)
-
-par(mfrow=c(1,1))
-
-hist(ECData$Global_active_power,col = "red", xlab = "Global Active Power(Kilowatts)",main = "Global Active Power")
-dev.copy(png, file="plot1.png", width=480, height=480)
-dev.off()
+plot1 <- function(){
+        # begin with loading library
+        library(dataplot)
+        
+        # retrieve the data
+        data <- read.table("household_power_consumption.txt",header = TRUE, sep = ";",na.strings = "?")
+        
+        # get the clean data
+        
+        cleandata <- subset(data,Date == "1/2/2007"| Date == "2/2/2007" )
+        cleandata$Date <- as.Date(tidydata$Date, format = "%d/%m/%Y")
+        cleandata$Time <- paste(tidydata$Date,tidydata$Time,sep = " ")
+        cleandata$Time <- ymd_hms(tidydata$Time)
+        
+        # set the plotting device to png file
+        png(filename = "./plot1.png",width = 480, height = 480)
+        
+        # plot the figure
+        hist(cleandata$Global_active_power, col = "red", xlab = "Global Active Power (kilowatts)",
+             ylab= "Frequency", main = "Global Active Power",ylim = range(c(0,200,400,600,800,1000,1200)))
+             
+        dev.off()
+}
