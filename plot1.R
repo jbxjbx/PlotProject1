@@ -8,9 +8,9 @@ plot1 <- function(){
         # get the clean data
         
         cleandata <- subset(data,Date == "1/2/2007"| Date == "2/2/2007" )
-        cleandata$Date <- as.Date(tidydata$Date, format = "%d/%m/%Y")
-        cleandata$Time <- paste(tidydata$Date,tidydata$Time,sep = " ")
-        cleandata$Time <- ymd_hms(tidydata$Time)
+        cleandata$Date <- as.Date(cleandata$Date, format = "%d/%m/%Y")
+        cleandata$Time <- paste(cleandata$Date,cleandata$Time,sep = " ")
+        cleandata$Time <- ymd_hms(cleandata$Time)
         
         # set the plotting device to png file
         png(filename = "./plot1.png",width = 480, height = 480)
