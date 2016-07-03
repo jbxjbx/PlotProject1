@@ -5,10 +5,10 @@ plot2 <- function(){
         # retrieve data
         data <- read.table("household_power_consumption.txt",header = TRUE, sep = ";",na.strings = "?")
         
-        cleandata <- subset(tidydata,Date == "1/2/2007"| Date == "2/2/2007" )
-        cleandata$Date <- as.Date(tidydata$Date, format = "%d/%m/%Y")
-        cleandata$Time <- paste(tidydata$Date,tidydata$Time,sep = " ")
-        cleandata$Time <- ymd_hms(tidydata$Time)
+        cleandata <- subset(cleandata,Date == "1/2/2007"| Date == "2/2/2007" )
+        cleandata$Date <- as.Date(cleandata$Date, format = "%d/%m/%Y")
+        cleandata$Time <- paste(cleandata$Date,cleandata$Time,sep = " ")
+        cleandata$Time <- ymd_hms(cleandata$Time)
         
         # set the plotting device to png file
         png(filename = "./plot2.png",width = 480, height = 480)
