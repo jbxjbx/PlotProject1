@@ -12,23 +12,19 @@ plot4 <- function(){
         # set the plotting device to png file
         png(filename = "./plot4.png",width = 480, height = 480)
         
-        # plot the figure
-        par(mfrow=c(2,2)) #global environment
-        
-           # plot panel 1
+        # plot the graph
+        par(mfrow=c(2,2)) 
+
            with(cleandata,plot(Global_active_power ~ Time,type = "l",xlab= " ",
                            ylab = "Global Active Power (kilowatts)" ))
-           # plot panel 2
            with(cleandata,plot(Voltage ~ Time,type = "l",xlab= "datatime",
                               ylab = "Global Active Power (kilowatts)" ))
-           # plot panel 3
            with(cleandata,plot(Sub_metering_1 ~ Time,type = "l",xlab= " ",
                            ylab = "Energy sub metering" ))
           lines(x=cleandata$Time,y=cleandata$Sub_metering_2,col= "red")
           lines(x=cleandata$Time,y=cleandata$Sub_metering_3,col= "blue")
           legend("topright",lty = 1,lwd= 2,col=c("black","red","blue"),
                legend=c("Sub_metering_1","Sub_metering_2","Sub_metering_3"))
-          # plot panel 4
           with(cleandata,plot(Global_reactive_power ~ Time,type = "l",xlab= "datetime" ))
         
         dev.off()
